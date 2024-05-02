@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="/static/css/global_dashboard.css" />
+    <link rel="stylesheet" href="/static/css/statics_dash_new.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space Grotesk:wght@500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Murecho:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="statics">
+      <div class="statics-child"></div>
+      <main class="cardi-clinvar-label-parent">
+        <div class="cardi-clinvar-label">
+          <div class="cardio-clinvar-wrapper">
+            <h2 class="cardio-clinvar">CARDIO CLINVAR</h2>
+          </div>
+          <div class="nav-item">
+            <img
+              class="save-money-1-icon"
+              loading="lazy"
+              alt=""
+              src="/static/img/dashb_icon.jpg"
+            />
+
+            <div class="dashboard-wrapper">
+              <div class="dashboard">Dashboard</div>
+            </div>
+          </div>
+          <div class="search-field-instance">
+            <img class="subtract-icon" alt="" src="/static/img/subtract.png" />
+
+            <img
+              class="download-1-icon"
+              loading="lazy"
+              alt=""
+              src="/static/img/ncbi.png"
+            />
+          </div>
+          <div class="nav-item-parent">
+            <div class="nav-item1">
+              <img
+                class="save-money-1-icon1"
+                loading="lazy"
+                alt=""
+                src="/static/img/result_icon.png"
+              />
+
+              <div class="result-wrapper">
+                <div class="result">Result</div>
+              </div>
+            </div>
+            <div class="nav-item2">
+              <div class="save-money-1-wrapper">
+                <img
+                  class="save-money-1-icon2"
+                  loading="lazy"
+                  alt=""
+                  src="/static/img/search_icon.png"
+                />
+              </div>
+              <div class="new-feature-in">New Feature (In works)</div>
+            </div>
+          </div>
+          <div class="nav-item3">
+            <img
+              class="save-money-1-icon3"
+              loading="lazy"
+              alt=""
+              src="/static/img/logout_icon.png"
+            />
+
+            <div class="logout-wrapper">
+              <div class="logout">Logout</div>
+            </div>
+          </div>
+        </div>
+        <section class="card-container">
+          <div class="frame-parent">
+            <div class="frame-group">
+              <div class="frame-container">
+                <div class="frame-div">
+                  <div class="group-wrapper">
+                    <div class="group">
+                      <div class="bg"></div>
+                      <div class="explore-wrapper">
+                        <b class="explore1">Explore</b>
+                      </div>
+                      <div class="about-us-wrapper">
+                        <b class="about-us1">About Us</b>
+                      </div>
+                    </div>
+                  </div>
+                  <img
+                    class="frame-child"
+                    loading="lazy"
+                    alt=""
+                    src="{{ pic }}"
+                  />
+                </div>
+                <div class="welcome-john-doe-wrapper">
+                  <h1 class="welcome-john-doe">WELCOME, {{ name }}</h1>
+                </div>
+              </div>
+              <div class="intro-taken-from-the-report-wrapper">
+                <h2 class="intro-taken-from">Intro taken from the report</h2>
+              </div>
+            </div>
+            <div class="frame-wrapper">
+              <form id="search-form" action="/result" method="post">
+              <div class="searchfield-parent">
+                <div class="searchfield">
+                  <img
+                    class="google-font-icon-filled-cus"
+                    loading="lazy"
+                    alt=""
+                    src="/static/img/search_bar_icon.png"
+                  />
+
+                  <div class="search">St</div>
+                </div>
+                <div class="search-phenotypes-genes-or-va-wrapper">
+                  <input type="text" class="search-input" name="cardio_input" placeholder="Search Phenotype or Gene">
+                </div>
+              </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const searchInput = document.getElementById("search-input");
+      const searchForm = document.getElementById("search-form");
+  
+      // Submit the form when Enter key is pressed
+      searchInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+          event.preventDefault(); // Prevent the default form submission
+          searchForm.submit(); // Submit the form
+        }
+      });
+    });
+</script>

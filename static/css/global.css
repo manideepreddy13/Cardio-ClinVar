@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    line-height: normal;
+  }
+  
+  :root {
+    /* fonts */
+    --font-roboto: Roboto;
+    --font-space-grotesk: "Space Grotesk";
+    --font-raleway: Raleway;
+  
+    /* font sizes */
+    --font-size-xl: 20px;
+  
+    /* Colors */
+    --color-white: #fff;
+    --color-black: #000;
+  
+    /* Gaps */
+    --gap-xl: 20px;
+  
+    /* Paddings */
+    --padding-xl: 20px;
+    --padding-61xl: 80px;
+    --padding-48xl: 67px;
+    --padding-mid-8: 17.8px;
+  
+    /* Border radiuses */
+    --br-3xs: 10px;
+  }
+  
