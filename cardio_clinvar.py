@@ -33,7 +33,7 @@ app.config['DEBUG'] = True
 app.secret_key = "super secret key"
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-google_client_id = "933494199025-p0654rjvu4ta9dbicre0tk4l4n3t06ju.apps.googleusercontent.com"
+google_client_id = "your-google-client-id"
 
 client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
 
