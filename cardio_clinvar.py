@@ -452,7 +452,7 @@ def stream_data():
         headers = {
             'accept': 'text/event-stream',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer sk_3ZgwXFeEcTYVtLqNZ9pTh2h2'
+            'Authorization': 'Bearer your_chatcsv_token'
         }
         data = {
             'model': 'gpt-4-0613',
