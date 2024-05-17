@@ -74,7 +74,7 @@
                 <div class="result">Result</div>
               </div>
             </div>
-            <div class="nav-item2">
+            <div class="nav-item2" id="chat-csv-redirect">
               <div class="save-money-1-wrapper">
                 <img
                   class="save-money-1-icon2"
@@ -83,10 +83,10 @@
                   src="/static/img/search_icon.png"
                 />
               </div>
-              <div class="new-feature-in">New Feature (In works)</div>
+              <div class="new-feature-in">Chat CSV</div>
             </div>
           </div>
-          <div class="nav-item3">
+          <div class="nav-item3" id="logout-redirect">
             <img
               class="save-money-1-icon3"
               loading="lazy"
@@ -127,7 +127,7 @@
                 </div>
               </div>
               <div class="intro-taken-from-the-report-wrapper">
-                <h2 class="intro-taken-from">Intro taken from the report</h2>
+                <h4 class="intro-taken-from">Cardio ClinVar was developed to provide gene and disease-wise summary statistic based on all available genetic variants linked to cardiomyopathy disease from ClinVar.</h4>
               </div>
             </div>
             <div class="frame-wrapper">
@@ -169,4 +169,13 @@
         }
       });
     });
+
+    document.getElementById("chat-csv-redirect").addEventListener("click", function() {
+    window.location.href = "/chatcsv";
+  });
+
+  document.getElementById("logout-redirect").addEventListener("click", function() {
+    window.location.href = "/google_logout";
+  });
+
 </script>

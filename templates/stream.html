@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat CSV Stream</title>
+    <style>
+        .user::before {
+            content: "User: ";
+            color: blue;
+        }
+        .assistant::before {
+            content: "Assistant: ";
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-window">
+        <div id="chat-output"></div>
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        const chatOutput = document.getElementById('chat-output');
+        const userInput = document.getElementById('user-input');
+
+        // Function to display messages in the chat window
+        function displayMessage(role, content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = role;
+            messageDiv.textContent = content;
+            chatOutput.appendChild(messageDiv);
+            chatOutput.scrollTop = chatOutput.scrollHeight;
+        }
+
+        // Function to send user message to server
+        function sendMessage() {
+            const userMessage = userInput.value.trim();
+            if (userMessage !== '') {
+                displayMessage('user', userMessage);
+                fetch('/chatstream', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ content: userMessage })
+                }).then(response => response.json())
+                .then(data => {
+                    displayMessage('assistant', data.message);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+                userInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>

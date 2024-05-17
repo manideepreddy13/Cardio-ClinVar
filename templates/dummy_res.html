@@ -1,0 +1,49 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    <h2>{{ display_query }}</h2>
+    {{ result_table | safe }}
+
+    <p>
+        {{ chart | safe}}
+    </p>
+
+    <div>
+        <!-- Display the plot image -->
+        {% for plot in plot_path %}
+        <img src="{{ plot }}" alt="Plot" style="width: 50%;"><br>
+    {% endfor %}
+    </div>
+</body>
+</html>
+
+<script>
+    $(document).ready( function () {
+        $('#result_table').DataTable({
+            "paging": true,
+            "pageLength": 10, // Show 10 rows per page
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "language": {
+                "emptyTable": "No data available in table",
+                "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                "infoEmpty": "Showing 0 to 0 of 0 entries",
+                "infoFiltered": "(filtered from _MAX_ total entries)",
+                "lengthMenu": "Show _MENU_ entries",
+                "search": "Search:",
+                "zeroRecords": "No matching records found"
+            }
+        });
+    });
+</script>

@@ -6,19 +6,19 @@ use Sort::Fields;
 ################# opening ##################
 open CLINVAR, "<./variant_summary.txt" or die "$!";
 # Poner fecha
-open OUT, ">./clinvar.feb19" or die "$!";
+open OUT, ">./summary_prefiltered" or die "$!";
 open ERROR, ">./variant_summary.error" or die "$!";
 
 my @clinvar = <CLINVAR>;
 @file = grep /\tGRCh37\t/, @clinvar;
 
-################# processing Clinvar ##################
+################# clean Clinvar ##################
 
 foreach my $h (0..$#file) {
 	chomp($h);
 	my ($id, $type, $mut, $gene, $chr, $ini, $fin, $ref, $alt, $dis, $origin, $sig, $rev,$varid,$lastEvaluted) = (split /\t/, $file[$h])[0, 1, 2, 4, 18, 19, 20, 21, 22, 13, 14, 6, 24,30,8]; # mutacion, gen
 	if ($h == 0) {
-		print OUT "GeneSymbol\tType\tClinicalSignificance\tOriginSimple\tPhenotypeList\tName\tcvid\tkey\ttranscrip\tconsequence\tref_aa\talt_aa\tpos_aa\treview\tVariation ID\tLast Evaluated\n";
+		print OUT "GeneSymbol\tType\tClinicalSignificance\tOriginSimple\tPhenotypeList\tName\tcvid\tkey\ttranscrip\tconsequence\tref_aa\talt_aa\tpos_aa\treview\n";
 		next;
 	}
 	# defitions of extras
@@ -29,6 +29,7 @@ foreach my $h (0..$#file) {
 	my $transcript = "NA";
 	my $var = "NA";
 	my $var2 = "NA";
+	# Estructura de la entrada Mut.
 	if ($mut =~ /:/) {
 		($transcript, $var) = split /:/, $mut, 2;
 		$transcript =~ s/\(.*\)//g;
@@ -112,12 +113,9 @@ foreach my $h (0..$#file) {
 	} else {
 			print ERROR "===>".$type."\t".$var."\n";
 	}
-	if($dis =~ /cardiomypathy/i){
-		
+	if($dis =~ /cardiomyopathy/i){
 		my $key = $chr.";".$ini.";".$fin.";".$ref.";".$alt;
 		print OUT "$gene\t$type\t$sig\t$origin\t$dis\t$mut\tCV:$id\t$key\t$transcript\t$consequence\t$aa_ref\t$aa_alt\t$pos_aa\t$rev\t$varid\t$lastEvaluted\n";
-		
-		
 		#           	0        1        2         3      4          5          6        7        8       9      10    11               
 	}
 	
@@ -126,3 +124,5 @@ close CLINVAR;
 close OUT;
 close ERROR;
 
+
+# Agregar serie de gsubs que marie hizo con el otro codigo de R. 

@@ -1,0 +1,218 @@
+.property-1frame-type-child {
+    position: absolute;
+    height: 7.41%;
+    width: 100%;
+    top: 92.59%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: var(--br-mini);
+    background-color: var(--color-gray-200);
+  }
+  .arrow-45-icon1,
+  .arrow-46-icon1 {
+    position: absolute;
+    top: 742px;
+    left: 949px;
+    width: 49.9px;
+    height: 49.9px;
+    overflow: hidden;
+  }
+  .arrow-45-icon1 {
+    left: 899px;
+    object-fit: contain;
+  }
+  .clinsign-icon1,
+  .review-icon1,
+  .top10gene-icon1,
+  .type-icon1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1030px;
+    height: 720px;
+    object-fit: cover;
+  }
+  .clinsign-icon1,
+  .review-icon1,
+  .top10gene-icon1 {
+    left: 1140px;
+  }
+  .review-icon1,
+  .top10gene-icon1 {
+    left: 2280px;
+  }
+  .top10gene-icon1 {
+    left: 3420px;
+  }
+  .top10phenotype-icon1 {
+    left: 4560px;
+    width: 1030px;
+    object-fit: cover;
+  }
+  .carousel-result1,
+  .csvtable-icon1,
+  .top10phenotype-icon1 {
+    position: absolute;
+    top: 0;
+    height: 720px;
+  }
+  .csvtable-icon1 {
+    left: 5700px;
+    width: 1030px;
+    object-fit: cover;
+  }
+  .carousel-result1 {
+    left: 0;
+    width: 1013px;
+    overflow: hidden;
+  }
+  .property-1frame-type {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 1030px;
+    height: 796px;
+  }
+  .clin-sign {
+    position: absolute;
+    width: 12.04%;
+    top: 94.35%;
+    left: 3.01%;
+    line-height: 140%;
+    display: inline-block;
+  }
+  .carousel-result2,
+  .clinsign-icon2 {
+    position: absolute;
+    top: 0;
+    height: 720px;
+  }
+  .clinsign-icon2 {
+    left: 1138px;
+    width: 1030px;
+    object-fit: cover;
+  }
+  .carousel-result2 {
+    left: -1138px;
+    width: 1013px;
+  }
+  .property-1frame-clinsign {
+    position: absolute;
+    top: 945px;
+    left: 20px;
+    width: 1030px;
+    height: 796px;
+    overflow: hidden;
+  }
+  .review-icon3 {
+    position: absolute;
+    top: 1px;
+    left: 2275px;
+    width: 1030px;
+    height: 720px;
+    object-fit: cover;
+  }
+  .carousel-result3 {
+    position: absolute;
+    top: 0;
+    left: -2276px;
+    width: 1013px;
+    height: 720px;
+  }
+  .property-1frame-review {
+    position: absolute;
+    top: 1870px;
+    left: 20px;
+    width: 1030px;
+    height: 796px;
+    overflow: hidden;
+  }
+  .top-10-genes {
+    position: absolute;
+    width: 17.09%;
+    top: 94.35%;
+    left: 3.01%;
+    line-height: 140%;
+    display: inline-block;
+  }
+  .review-icon4,
+  .top10gene-icon4 {
+    position: absolute;
+    top: 0;
+    left: 2276px;
+    width: 1030px;
+    height: 720px;
+    object-fit: cover;
+  }
+  .top10gene-icon4 {
+    left: 3409px;
+  }
+  .carousel-result4 {
+    position: absolute;
+    top: 1px;
+    left: -3412px;
+    width: 1013px;
+    height: 720px;
+  }
+  .property-1frame-top10gene {
+    position: absolute;
+    top: 2795px;
+    left: 20px;
+    width: 1030px;
+    height: 796px;
+    overflow: hidden;
+  }
+  .top-10-phenotypes {
+    position: absolute;
+    width: 22.14%;
+    top: 94.35%;
+    left: 3.01%;
+    line-height: 140%;
+    display: inline-block;
+  }
+  .carousel-result5 {
+    position: absolute;
+    top: 1px;
+    left: -4558px;
+    width: 1013px;
+    height: 720px;
+  }
+  .property-1frame-top10pheno {
+    position: absolute;
+    top: 3720px;
+    left: 20px;
+    width: 1030px;
+    height: 796px;
+    overflow: hidden;
+  }
+  .carousel-result6 {
+    position: absolute;
+    top: 1px;
+    left: -5694px;
+    width: 1013px;
+    height: 720px;
+  }
+  .property-1frame-csvtable {
+    position: absolute;
+    top: 4645px;
+    left: 20px;
+    width: 1030px;
+    height: 796px;
+    overflow: hidden;
+  }
+  .component-11 {
+    width: 100%;
+    position: relative;
+    border-radius: 5px;
+    border: 1px dashed #9747ff;
+    box-sizing: border-box;
+    height: 5461px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-3xl);
+    color: var(--color-dimgray);
+    font-family: var(--font-poppins);
+  }
+  

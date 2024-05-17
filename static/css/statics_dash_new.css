@@ -41,6 +41,7 @@
     top : 87px;
     object-fit: cover;
     min-height: 30px;
+    
   }
   .dashboard {
     align-self: stretch;
@@ -141,6 +142,7 @@
     height: 35px;
     position: relative;
     object-fit: cover;
+    transform: translate(0,-12px);
   }
   .save-money-1-wrapper {
     height: 43px;
@@ -184,11 +186,12 @@
     gap: var(--gap-mini);
   }
   .save-money-1-icon3 {
-    height: 30px;
+    height: 60px;
     width: 29px;
     position: relative;
     object-fit: cover;
     min-height: 30px;
+    
   }
   .logout {
     align-self: stretch;
@@ -209,7 +212,7 @@
   .nav-item3 {
     display: flex;
     justify-content: flex-start;
-    box-sizing: border-box;
+    box-sizing: border-box;;
   }
   .nav-item3 {
     width: 218px;
@@ -352,9 +355,9 @@
     height: 132px;
     width: 547px;
     position: relative;
-    font-size: inherit;
-    line-height: 22px;
-    font-weight: 500;
+    font-size: smaller;
+    line-height: 27px;
+    font-weight: 250;
     font-family: inherit;
     display: flex;
     align-items: center;

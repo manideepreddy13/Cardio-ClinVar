@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, Response
 from flask import session
 from flask import Flask, render_template, request, url_for, flash, redirect
 from werkzeug.exceptions import abort
@@ -10,17 +10,199 @@ from plotnine.ggplot import ggsave
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from plotly.io import write_image
+import plotly.express as px
 from bs4 import BeautifulSoup
 from io import BytesIO
 import os
+import gzip
+import shutil
+import schedule
+import time
+from datetime import datetime, timedelta
 import pathlib
 import requests
+import json
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
 import google.auth.transport.requests
-#from plotnine import *
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
+import subprocess
+import csv
 
+
+def search_variant_id(variant_id):
+    url = "https://www.ncbi.nlm.nih.gov/clinvar/"
+
+    with requests.Session() as session:
+        session.get(url)
+        data = {
+            'term': variant_id
+        }
+
+        response = session.post(url, data=data)
+
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            meta_tag = soup.find('meta', attrs={'name': 'ncbi_uid'})
+            if meta_tag['name'] == 'ncbi_uid':
+                uid_value = meta_tag['content']
+
+        else:
+            return "Failed to fetch webpage"
+    return uid_value
+
+#Check if today is thursday
+def is_first_tuesday():
+    today = datetime.today()
+    is_first_tuesday = today.weekday() == 1 and 1 <= today.day <= 7
+    print(f"Today is {today.strftime('%Y-%m-%d')} and is_first_tuesday: {is_first_tuesday}")
+    return is_first_tuesday
+
+#Send mail to all the users regarding the update
+def send_mail():
+    df = pd.read_csv('new_entries.csv', delimiter='\t')
+    variant_id_counts = df['variant_id'].value_counts()
+    top_variant_ids = variant_id_counts.index.tolist()[:5]
+    variant_hyperlinks = []
+
+    for variant_id in top_variant_ids:
+        hyperlink = search_variant_id(variant_id)
+        variant_hyperlinks.append((variant_id, "https://www.ncbi.nlm.nih.gov/clinvar/variation/" + hyperlink + "/"))
+
+    smtp_port = 587                 # Standard secure SMTP port
+    smtp_server = "smtp.gmail.com"  # Google SMTP Server
+
+    email_from = "cardioclinvar mail"
+    email_list = []
+
+    pswd = "password of the cardioclinvar mail"
+
+    subject = "This month's updates in the Cardio Clinvar"
+
+    for person in email_list:
+        # Make the body of the email
+        body = f"""
+        The following attachment contains about the records are modified from the past month. Please feel free to check the file to look for any changes that have been made in the database.
+
+        The top variants that have undergone a change are:
+        <ul>
+        """
+        # Add variant hyperlinks if provided
+        if variant_hyperlinks:
+            for variant_id, hyperlink in variant_hyperlinks:
+                body += f"<li><a href='{hyperlink}'>{variant_id}</a></li>"
+            body += "</ul>"
+
+        # make a MIME object to define parts of the email
+        msg = MIMEMultipart()
+        msg['From'] = email_from
+        msg['To'] = person
+        msg['Subject'] = subject
+
+        # Attach the body of the message
+        msg.attach(MIMEText(body, 'html'))
+
+        # Define the file to attach
+        filename = "new_entries.csv"
+
+        # Open the file in python as a binary
+        attachment= open(filename, 'rb')  # r for read and b for binary
+
+        # Encode as base 64
+        attachment_package = MIMEBase('application', 'octet-stream')
+        attachment_package.set_payload((attachment).read())
+        encoders.encode_base64(attachment_package)
+        attachment_package.add_header('Content-Disposition', "attachment; filename= " + filename)
+        msg.attach(attachment_package)
+
+        # Cast as string
+        text = msg.as_string()
+
+        # Connect with the server
+        print("Connecting to server...")
+        TIE_server = smtplib.SMTP(smtp_server, smtp_port)
+        TIE_server.starttls()
+        TIE_server.login(email_from, pswd)
+        print("Successfully connected to server")
+        print()
+
+        # Send emails to "person" as list is iterated
+        print(f"Sending email to: {person}...")
+        TIE_server.sendmail(email_from, person, text)
+        print(f"Email sent to: {person}")
+        print()
+
+    TIE_server.quit()
+
+
+def download_and_extract():
+    url = "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz"
+
+    downloaded_file_path = "variant_summary.txt.gz"
+    extracted_file_path = "variant_summary.txt"
+
+    # Download the compressed file
+    response = requests.get(url, stream=True)
+    with open(downloaded_file_path, 'wb') as f:
+        shutil.copyfileobj(response.raw, f)
+
+    # Extract the contents of the compressed file
+    with gzip.open(downloaded_file_path, 'rb') as f_in:
+        with open(extracted_file_path, 'wb') as f_out:
+            shutil.copyfileobj(f_in, f_out)
+
+    os.remove(downloaded_file_path)
+    print("New file downloaded and extracted successfully.")
+
+
+#Prefiltering of the database (no need of arguments as they are already initialized in the perlscript file)
+def prefilter():
+    prefilter_script_file = 'prefiltering_new.py'
+    subprocess.run(['python', prefilter_script_file])
+
+
+
+
+#Detection of differences in the files
+def is_update():
+    csv1 = pd.read_csv('clinvar_pf_database', delimiter='\t')
+    csv2 = pd.read_csv('summary_prefiltered', delimiter='\t')
+    csv1['pos_aa'] = csv1['pos_aa'].astype(str)
+    csv2['pos_aa'] = csv2['pos_aa'].astype(str)
+
+
+    merged = pd.merge(csv2, csv1, how='left', indicator=True)
+
+    rows_only_in_csv2 = merged[merged['_merge'] == 'left_only'].copy()
+    rows_only_in_csv2.drop(columns='_merge', inplace=True)
+    rows_only_in_csv2.to_csv('new_entries.csv', index=False)
+
+    diff_in_csv = 'new_entries.csv'
+
+    with open('new_entries.csv', 'r') as file:
+        csv_reader = csv.reader(file)
+        row_count = sum(1 for row in csv_reader)
+
+        if(row_count == 1):
+            print('No update in file')
+        else :
+            print('There are updates in the file')
+            #send_mail()
+            original_file_path = 'summary_prefiltered'
+    
+    return original_file_path, diff_in_csv
+
+#schedule.every().day.at("00:00").do(lambda: download_and_extract(), prefilter(), is_update() if is_first_tuesday() else None)
+
+#original_file_path = "clinvar_pf_database"
+#download_and_extract()
+#prefilter()
+#original_file_path, diff_in_csv = is_update()
 
 clean = pd.read_csv("clinvar_pf_database",delimiter="\t")
 genes = pd.read_csv("genes.refSeq", delimiter="\t", escapechar="\\", skipinitialspace=True)
@@ -33,15 +215,14 @@ app.config['DEBUG'] = True
 app.secret_key = "super secret key"
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-google_client_id = "your-google-client-id"
+google_client_id = "your_google_client_id"
 
 client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
 
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri="http://127.0.0.1:5000/callback",
-    clock_skew_in_seconds=0
+    redirect_uri=""
 )
 
 
@@ -82,7 +263,7 @@ def callback():
         id_token=credentials._id_token,
         request=token_request,
         audience=google_client_id,
-        clock_skew_in_seconds=0
+        clock_skew_in_seconds=3
     )
 
     print(id_info)
@@ -92,11 +273,41 @@ def callback():
     session["email"] = id_info.get("email")
     session['picture'] = id_info.get("picture")
     session["name"] = id_info.get("given_name")
+
+
+    csv_file = 'user_db.csv'
+
+    with open(csv_file, 'r', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['email'] == session["email"]:
+                user_exist = True
+                print('User already exists')
+                break
+            else:
+                user_exist = False
+                print('New user')
+                break
+
+
+    if user_exist == False:
+        with open(csv_file, 'a+', newline='') as csvfile:
+            fieldnames = ["google_id", "name", "email", "picture", "given_name"]
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames, extrasaction='ignore')
+        
+        # Check if the file is empty, then write header
+            csvfile.seek(0)
+            first_char = csvfile.read(1)
+            if not first_char:
+                writer.writeheader()
+        
+        # Write user details to CSV
+            writer.writerow(session)
+    
     return redirect("/dashboard")
 
 @app.route('/google_logout', methods=('GET', 'POST'))
 def logout():
-    print(session)
     session.clear()
     return redirect('/')
 
@@ -149,7 +360,7 @@ def plot_variants(cardio_output, column):
             ) +
             theme(axis_text_x=element_text(angle=45, hjust=1)))
     else:
-        plot_title = f'Bar plot of {column}' 
+        plot_title = f'Bar plot of {column}'
         plot_type = (ggplot(typegene_9_df) +
             ggtitle(plot_title) +
             aes(x=f'{column}') +
@@ -228,3 +439,46 @@ def search():
     
 
     return render_template('result.html', display_query=cardio_input, result_table=result_table, plot_path = plot_var)
+
+@app.route('/chatcsv')
+def chat_csv():
+    return render_template('stream.html', name = session['name'].upper())
+
+@app.route('/chatstream', methods=['POST'])
+def stream_data():
+    try:
+        user_message = request.json['content'].strip()
+        print(user_message)
+        headers = {
+            'accept': 'text/event-stream',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer sk_3ZgwXFeEcTYVtLqNZ9pTh2h2'
+        }
+        data = {
+            'model': 'gpt-4-0613',
+            'messages': [
+                {'role': 'user', 'content': user_message}
+            ],
+            'files': [
+                'https://raw.githubusercontent.com/manideepreddy13/Cardio-ClinVar/main/clinvar_pf_database'
+            ]
+        }
+        response = requests.post('https://www.chatcsv.co/api/v1/chat', headers=headers, json=data)
+        assistant_message = response.text
+        print(assistant_message)
+        
+        return json.dumps({'message': assistant_message})
+
+        
+        #for chunk in response.iter_content(chunk_size=1024):
+        #    assistant_message += chunk.decode('utf-8')
+
+        #print(assistant_message)
+
+        #return json.dumps({'message': assistant_message})
+
+        
+
+    except Exception as e:
+        print(e)
+        return json.dumps({'error': str(e)})

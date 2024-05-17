@@ -1,0 +1,526 @@
+.statics {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .statics .overlap-wrapper {
+    overflow: hidden;
+    background-image: url(./img/statics.png);
+    background-size: cover;
+    background-position: 50% 50%;
+    width: 1440px;
+    height: 1024px;
+  }
+  
+  .statics .overlap {
+    position: relative;
+    height: 1480px;
+    top: -74px;
+  }
+  
+  .statics .overlap-group {
+    position: absolute;
+    width: 1440px;
+    height: 1187px;
+    top: 0;
+    left: 0;
+  }
+  
+  .statics .rectangle {
+    position: absolute;
+    width: 1440px;
+    height: 1px;
+    top: 74px;
+    left: 0;
+  }
+  
+  .statics .text-wrapper {
+    position: absolute;
+    width: 223px;
+    top: 106px;
+    left: 44px;
+    font-family: "Space Grotesk-Medium", Helvetica;
+    font-weight: 500;
+    color: #000000;
+    font-size: 32px;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: normal;
+  }
+  
+  .statics .subtract {
+    position: absolute;
+    width: 298px;
+    height: 1187px;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
+  
+  .statics .nav-item {
+    width: 218px;
+    height: 59px;
+    position: absolute;
+    top: 234px;
+    left: 66px;
+    mix-blend-mode: darken;
+    display: flex;
+    align-items: center;
+    gap: 12.51px;
+    padding: 12.51px;
+    border-radius: 8.34px;
+  }
+  
+  .statics .save-money {
+    position: relative;
+    width: 29px;
+    height: 30px;
+    object-fit: cover;
+  }
+  
+  .statics .left {
+    width: 164px;
+    height: 42px;
+    margin-top: -4.01px;
+    margin-bottom: -4.01px;
+    margin-right: -12.52px;
+    display: flex;
+    align-items: center;
+    gap: 6.25px;
+    position: relative;
+  }
+  
+  .statics .div {
+    position: relative;
+    flex: 1;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #232323;
+    font-size: 18px;
+    letter-spacing: -0.18px;
+    line-height: 25px;
+  }
+  
+  .statics .download {
+    position: absolute;
+    width: 153px;
+    height: 72px;
+    top: 982px;
+    left: 59px;
+    object-fit: cover;
+  }
+  
+  .statics .nav-item-2 {
+    width: 218px;
+    height: 59px;
+    position: absolute;
+    top: 319px;
+    left: 66px;
+    mix-blend-mode: darken;
+    display: flex;
+    align-items: center;
+    gap: 12.51px;
+    padding: 12.51px;
+    border-radius: 8.34px;
+  }
+  
+  .statics .img {
+    position: relative;
+    width: 33.83px;
+    height: 35px;
+    margin-top: -0.51px;
+    margin-bottom: -0.51px;
+    object-fit: cover;
+  }
+  
+  .statics .div-wrapper {
+    width: 164px;
+    height: 42px;
+    margin-top: -4.01px;
+    margin-bottom: -4.01px;
+    margin-right: -17.35px;
+    display: flex;
+    align-items: center;
+    gap: 6.25px;
+    position: relative;
+  }
+  
+  .statics .nav-item-3 {
+    width: 218px;
+    height: 59px;
+    position: absolute;
+    top: 393px;
+    left: 66px;
+    mix-blend-mode: darken;
+    display: flex;
+    align-items: center;
+    gap: 12.51px;
+    padding: 12.51px;
+    border-radius: 8.34px;
+  }
+  
+  .statics .text-wrapper-2 {
+    position: relative;
+    flex: 1;
+    margin-top: -5.54px;
+    margin-bottom: -3.46px;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #232323;
+    font-size: 18px;
+    letter-spacing: -0.18px;
+    line-height: 25px;
+  }
+  
+  .statics .nav-item-4 {
+    width: 218px;
+    height: 59px;
+    position: absolute;
+    top: 901px;
+    left: 66px;
+    mix-blend-mode: darken;
+    display: flex;
+    align-items: center;
+    gap: 12.51px;
+    padding: 12.51px;
+    border-radius: 8.34px;
+  }
+  
+  .statics .overlap-2 {
+    position: absolute;
+    width: 801px;
+    height: 105px;
+    top: 82px;
+    left: 356px;
+  }
+  
+  .statics .group {
+    position: absolute;
+    width: 801px;
+    height: 104px;
+    top: 0;
+    left: 0;
+  }
+  
+  .statics .navigation {
+    position: absolute;
+    width: 555px;
+    height: 80px;
+    top: 25px;
+    left: 245px;
+  }
+  
+  .statics .frame {
+    display: flex;
+    flex-direction: column;
+    width: 230.97px;
+    align-items: flex-start;
+    gap: 8.34px;
+    position: absolute;
+    top: 1133px;
+    left: 369px;
+  }
+  
+  .statics .nav-item-5 {
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+    background-color: #f0e1fc;
+    display: flex;
+    align-items: center;
+    gap: 12.51px;
+    padding: 12.51px;
+    border-radius: 8.34px;
+  }
+  
+  .statics .left-2 {
+    flex: 1;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 6.25px;
+    position: relative;
+  }
+  
+  .statics .icon-outline {
+    position: relative;
+    width: 25.01px;
+    height: 25.01px;
+  }
+  
+  .statics .text-wrapper-3 {
+    position: relative;
+    flex: 1;
+    margin-top: -1.04px;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #0e0e0e;
+    font-size: 15.6px;
+    letter-spacing: -0.16px;
+    line-height: 25px;
+  }
+  
+  .statics .frame-2 {
+    position: relative;
+    width: 20.84px;
+    height: 20.84px;
+    background-color: var(--coloraccent-07);
+    border-radius: 4.17px;
+  }
+  
+  .statics .text-wrapper-4 {
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #000000;
+    font-size: 10.4px;
+    text-align: center;
+    letter-spacing: -0.1px;
+    line-height: normal;
+  }
+  
+  .statics .nav-item-6 {
+    display: flex;
+    align-items: center;
+    gap: 12.51px;
+    padding: 12.51px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+    border-radius: 8.34px;
+  }
+  
+  .statics .icon-menu-icon {
+    position: relative;
+    width: 25.01px;
+    height: 25.01px;
+    background-image: url(./img/image.png);
+    background-size: 100% 100%;
+  }
+  
+  .statics .text-wrapper-5 {
+    position: relative;
+    flex: 1;
+    margin-top: -1.04px;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #232323;
+    font-size: 15.6px;
+    letter-spacing: -0.16px;
+    line-height: 25px;
+  }
+  
+  .statics .icon-menu-icon-2 {
+    position: relative;
+    width: 25.01px;
+    height: 25.01px;
+    background-image: url(./img/stroke.png);
+    background-size: 100% 100%;
+  }
+  
+  .statics .text-wrapper-6 {
+    position: relative;
+    flex: 1;
+    margin-top: -1.04px;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #111111;
+    font-size: 15.6px;
+    letter-spacing: -0.16px;
+    line-height: 25px;
+  }
+  
+  .statics .icon-menu-icon-3 {
+    position: relative;
+    width: 25.01px;
+    height: 25.01px;
+    background-image: url(./img/icon-2.png);
+    background-size: 100% 100%;
+  }
+  
+  .statics .text-wrapper-7 {
+    position: relative;
+    flex: 1;
+    margin-top: -1.04px;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #343434;
+    font-size: 15.6px;
+    letter-spacing: -0.16px;
+    line-height: 25px;
+  }
+  
+  .statics .frame-3 {
+    position: relative;
+    width: 20.84px;
+    height: 20.84px;
+    background-color: var(--coloraccent-04);
+    border-radius: 4.17px;
+  }
+  
+  .statics .icon-menu-icon-4 {
+    position: relative;
+    width: 25.01px;
+    height: 25.01px;
+    background-image: url(./img/icon-3.png);
+    background-size: 100% 100%;
+  }
+  
+  .statics .text-wrapper-8 {
+    position: relative;
+    flex: 1;
+    margin-top: -1.04px;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #242424;
+    font-size: 15.6px;
+    letter-spacing: -0.16px;
+    line-height: 25px;
+  }
+  
+  .statics .icon-menu-icon-5 {
+    position: relative;
+    width: 25.01px;
+    height: 25.01px;
+    background-image: url(./img/icon.png);
+    background-size: 100% 100%;
+  }
+  
+  .statics .text-wrapper-9 {
+    position: relative;
+    flex: 1;
+    margin-top: -1.04px;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #121212;
+    font-size: 15.6px;
+    letter-spacing: -0.16px;
+    line-height: 25px;
+  }
+  
+  .statics .ellipse {
+    position: absolute;
+    width: 78px;
+    height: 78px;
+    top: 120px;
+    left: 1288px;
+  }
+  
+  .statics .component {
+    position: absolute;
+    width: 1030px;
+    height: 796px;
+    top: 249px;
+    left: 353px;
+  }
+  
+  .statics .overlap-group-2 {
+    position: absolute;
+    width: 1030px;
+    height: 59px;
+    top: 737px;
+    left: 0;
+    background-color: #fffcfc33;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px #00000040;
+  }
+  
+  .statics .arrow {
+    left: 949px;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 5px;
+  }
+  
+  .statics .text-wrapper-10 {
+    position: absolute;
+    width: 124px;
+    top: 13px;
+    left: 31px;
+    font-family: "Poppins-Bold", Helvetica;
+    font-weight: 700;
+    color: #57575a;
+    font-size: 22px;
+    letter-spacing: 0;
+    line-height: 30.8px;
+  }
+  
+  .statics .arrow-2 {
+    left: 899px;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 5px;
+  }
+  
+  .statics .carousel-result {
+    position: absolute;
+    width: 1013px;
+    height: 720px;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+  
+  .statics .type {
+    position: absolute;
+    width: 1030px;
+    height: 720px;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
+  
+  .statics .clinsign {
+    position: absolute;
+    width: 1030px;
+    height: 720px;
+    top: 0;
+    left: 1140px;
+    object-fit: cover;
+  }
+  
+  .statics .review {
+    position: absolute;
+    width: 1030px;
+    height: 720px;
+    top: 0;
+    left: 2280px;
+    object-fit: cover;
+  }
+  
+  .statics .top {
+    position: absolute;
+    width: 1030px;
+    height: 720px;
+    top: 0;
+    left: 3420px;
+    object-fit: cover;
+  }
+  
+  .statics .top-phenotype {
+    position: absolute;
+    width: 1030px;
+    height: 720px;
+    top: 0;
+    left: 4560px;
+    object-fit: cover;
+  }
+  
+  .statics .csvtable {
+    position: absolute;
+    width: 1030px;
+    height: 720px;
+    top: 0;
+    left: 5700px;
+    object-fit: cover;
+  }
+  
