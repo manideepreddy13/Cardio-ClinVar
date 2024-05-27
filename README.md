@@ -6,6 +6,6 @@
    Run the below command if the system is windows.
 
    ```bash
-      pip install virtualenv
-      virtualenv random
+   pip install virtualenv
+   virtualenv random
    
